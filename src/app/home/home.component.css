@@ -9,3 +9,11 @@ hr {
   margin: auto;
   width: 50%;
 }
+
+.action:hover {
+  cursor: pointer;
+}
+.action {
+  text-align: center;
+}
+

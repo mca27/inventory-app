@@ -4,8 +4,14 @@
     <p>Data is loading please wait....</p>
   </div>
   <div class="row">
-    <div class="col-md-3">
-      <select name="perPage" id="perPage" (change)="setPerPage()" [formControl]="perPage" placeholder="Per page">
+    <div class="col-md-3 col-xs-3">
+      <select
+        name="perPage"
+        id="perPage"
+        (change)="setPerPage()"
+        [formControl]="perPage"
+        placeholder="Per page"
+      >
         <option value="5">5</option>
         <option value="10">10</option>
         <option value="20">20</option>
@@ -19,23 +25,34 @@
         <option value="100">100</option>
       </select>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 col-xs-3">
       <input
         type="text"
         placeholder="Serch by category"
         name="categoryFilter"
         id="categoryFilter"
-        (input) = "filterByCategory()"
+        (input)="filterByCategory()"
         [formControl]="categoryFilter"
       />
     </div>
-    <div class="col-md-3">
-      <button class="clearFilter" (click)="resetFilters()">
-        Clear Filters
+    <div class="col-md-3 col-xs-3">
+      <button
+        class="clearFilter"
+        *ngIf="categoryFilter.value"
+        style="width: 10%"
+        (click)="resetFilters()"
+      >
+        X
       </button>
     </div>
     <div class="col-md-3">
-      <button class="addProduct" (click)="openDialog(null, false)">Add Product</button>
+      <button
+        class="addProduct pull-right"
+        style="width: 50%"
+        (click)="openDialog(null, false)"
+      >
+        Add Product
+      </button>
     </div>
   </div>
   <div *ngIf="productsData">
@@ -52,10 +69,10 @@
       </thead>
       <tbody>
         <tr *ngFor="let product of productsData; let i = index">
-          <td>{{ i + 1 }}</td>
+          <td>{{ (page - 1) * pageSize + i + 1 }}</td>
           <td *ngIf="!product">No data Found</td>
           <td>{{ productIdDisplay(product.product_id) }}</td>
-          <td>{{ product.product_category }}</td>
+          <td class="titleCase">{{ product.product_category }}</td>
           <td>{{ product.product_name }}</td>
           <td>{{ product.product_description }}</td>
           <td>{{ product.units }}</td>
@@ -86,16 +103,29 @@
       <nav aria-label="Page navigation">
         <ul class="pagination pull-right">
           <li class="page-item">
-            <button class="page-link action" (click)="paginate(page - 1)" [disabled]="!hasPrevPage"
-              >Previous</button
+            <button
+              class="page-link action"
+              (click)="paginate(page - 1)"
+              [disabled]="!hasPrevPage"
             >
+              Previous
+            </button>
           </li>
           <li class="page-item">
-            <a class="page-link">{{pageSize}}/{{ totalDocs }}</a>
+            <a class="page-link">{{ pageSize }}/{{ totalDocs }}</a>
           </li>
           <li class="page-item">
-            <button class="page-link action" (click)="paginate(page + 1)" [disabled]="!hasNextPage">Next</button>
+            <button
+              class="page-link action"
+              (click)="paginate(page + 1)"
+              [disabled]="!hasNextPage"
+            >
+              Next
+            </button>
           </li>
+        </ul>
+        <ul class="pagination pull-left">
+          <button class="page-link action">Page {{ page }}</button>
         </ul>
       </nav>
     </div>

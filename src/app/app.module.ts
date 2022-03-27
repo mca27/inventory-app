@@ -10,17 +10,12 @@ import { RouteConstants } from './constants/route-counstants';
 import {  HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AboutComponent } from './about/about.component';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { ProductsComponent } from './products/products.component';
-import {
-  BuildingFilterPipe,
-  CityFilterPipe,
-  RateFilterPipe,
-  StateFilterPipe,
-} from './service/pipe-filters.service';
 import { HomeComponent } from './home/home.component';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DialogComponent } from './dialog/dialog.component';
+import { LoginComponent } from './auth/login/login.component';
+import { AuthService } from './service/auth.service';
 
 @NgModule({
   declarations: [
@@ -28,10 +23,7 @@ import { DialogComponent } from './dialog/dialog.component';
     HeaderComponent,
     ProductsComponent,
     DialogComponent,
-    CityFilterPipe,
-    StateFilterPipe,
-    RateFilterPipe,
-    BuildingFilterPipe,
+    LoginComponent,
     AboutComponent,
     HomeComponent,
   ],
@@ -40,11 +32,10 @@ import { DialogComponent } from './dialog/dialog.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgxPaginationModule,
     NgbModule,
     FormsModule,
   ],
-  providers: [RequestService, RouteConstants, NgbActiveModal],
+  providers: [RequestService, RouteConstants, NgbActiveModal, AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

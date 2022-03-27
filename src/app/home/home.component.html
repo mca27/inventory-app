@@ -1,4 +1,7 @@
   <div class="middle">
     <h1>Welcome</h1>
     <hr>
+    <br>
+    <h4 *ngIf="!isLoggedIn">Not logged in?</h4>
+    <a *ngIf="!isLoggedIn" class="action" (click)="goToLogin()">Login here</a>
   </div>

@@ -20,7 +20,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 export class ProductsComponent implements OnInit {
   productsData: any;
   categoryFilter: any = new FormControl();
-  perPage: any = new FormControl();
+  perPage: any = new FormControl(10);
   category: any;
   page = 1;
   pageSize = 10;

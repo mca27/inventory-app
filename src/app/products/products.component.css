@@ -94,5 +94,8 @@ button:hover {
 
 .page-link {
   color: black;
-  
+}
+
+.titleCase {
+  text-transform: capitalize;
 }
