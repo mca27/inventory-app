@@ -1,0 +1,103 @@
+<div class="container-fluid">
+  <div *ngIf="load" class="loaderAlign">
+    <div class="loader"></div>
+    <p>Data is loading please wait....</p>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <select name="perPage" id="perPage" (change)="setPerPage()" [formControl]="perPage" placeholder="Per page">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
+        <option value="60">60</option>
+        <option value="70">70</option>
+        <option value="80">80</option>
+        <option value="90">90</option>
+        <option value="100">100</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <input
+        type="text"
+        placeholder="Serch by category"
+        name="categoryFilter"
+        id="categoryFilter"
+        (input) = "filterByCategory()"
+        [formControl]="categoryFilter"
+      />
+    </div>
+    <div class="col-md-3">
+      <button class="clearFilter" (click)="resetFilters()">
+        Clear Filters
+      </button>
+    </div>
+    <div class="col-md-3">
+      <button class="addProduct" (click)="openDialog(null, false)">Add Product</button>
+    </div>
+  </div>
+  <div *ngIf="productsData">
+    <table *ngIf="!load && productsData.length > 0">
+      <thead>
+        <th>Sl No.</th>
+        <th>Product Id</th>
+        <th>Product category</th>
+        <th>Product name</th>
+        <th>Product description</th>
+        <th>Units</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of productsData; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td *ngIf="!product">No data Found</td>
+          <td>{{ productIdDisplay(product.product_id) }}</td>
+          <td>{{ product.product_category }}</td>
+          <td>{{ product.product_name }}</td>
+          <td>{{ product.product_description }}</td>
+          <td>{{ product.units }}</td>
+          <td>
+            <i
+              class="fa fa-edit action"
+              (click)="getProduct(product.product_id)"
+            ></i>
+          </td>
+          <td>
+            <i
+              class="fa fa-trash action"
+              (click)="deleteProduct(product.product_id)"
+            ></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="centerAlign" *ngIf="!load && productsData.length == 0">
+      <h2>Product Data not found</h2>
+    </div>
+    <div class="centerAlign" *ngIf="errorMessage">
+      <h2>{{ errorMessage }}</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <nav aria-label="Page navigation">
+        <ul class="pagination pull-right">
+          <li class="page-item">
+            <button class="page-link action" (click)="paginate(page - 1)" [disabled]="!hasPrevPage"
+              >Previous</button
+            >
+          </li>
+          <li class="page-item">
+            <a class="page-link">{{pageSize}}/{{ totalDocs }}</a>
+          </li>
+          <li class="page-item">
+            <button class="page-link action" (click)="paginate(page + 1)" [disabled]="!hasNextPage">Next</button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

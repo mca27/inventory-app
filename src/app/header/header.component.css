@@ -1,0 +1,36 @@
+
+
+.topnav {
+  overflow: hidden;
+  background-color: rgb(155, 148, 148);
+}
+
+.topnav a {
+  float: right;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+
+.activeClass{
+  background-color: #7bb19d;
+}
+.inActiveClass{
+  background-color: rgb(155, 148, 148);
+}
+
+.language{
+  text-transform: capitalize;
+}
+.resize{
+  height: 30px;
+  width: 70px;
+}
