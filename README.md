@@ -47,18 +47,13 @@ Step 4: Now open the project in VSCode and run the command ==> npm install
     - Note you sould be in the main project folder ==> inventoryApp
     - npm insall will isnstall all relavent and needful packages which are being used by the application.
 
-Step 5: Once installation is done run the command: npm start
-    - This will start the Application
-
-## Language Switch
-- There are two languages as of now English and Hindi, user can switch between both the languages.
+Step 5: Once installation is done run the command: npm run start
+    - This will start the Application, with the port 4200 => http://localhost:4200/
 
 ## Test Product Module
 - Once user clicks on the Product Menu on the top, user will see list of all the products in the tabular format.
 - The list is paginated with 10 items, user can go to next page by clicking on next button at the bottom of the table.
-- User can search data by, Product name, City and State 
-- User can give ratings to the product and filter all the products based on the ratings.
-- If user changes the menu or refreshes the page, rating data will get vanished.
+- User can filter by, Product category, and can set perPage value for number of items for the products table  
 
 ## Get inventoryApp From git
 - Make sure git is installed in your machine

@@ -34,6 +34,8 @@ export class DialogComponent implements OnInit {
     private requestService: RequestService
   ) {
     this.product = {};
+
+    // Categories list for category dropdown
     this.categories = [
       {
         key: 'commercial',
@@ -50,15 +52,19 @@ export class DialogComponent implements OnInit {
     ];
   }
   ngOnInit(): void {
+    // initialize if user tries to edit the product
     if (this.productData) {
       this.product = this.productData;
       this.product_id = _.get(this.productData, 'product_id', '');
     }
   }
-  addProduct(productForm: any) {
+
+  // Add/update product details
+  saveProduct(productForm: any) {
     this.submitted = true;
     if (!this.isUpdate) {
       const url =
+      // This block will execute when user tries to add the product
         this.routeConstants.COMPLETE_URL + this.routeConstants.ADD_PRODUCT;
       this.requestService.create(url, this.product).subscribe(
         (response) => {
@@ -74,6 +80,7 @@ export class DialogComponent implements OnInit {
         }
       );
     } else {
+      // This block will execute when user tries to update the product
       const url =
         this.routeConstants.COMPLETE_URL +
         this.routeConstants.UPDATE_PRODUCT +
@@ -99,6 +106,8 @@ export class DialogComponent implements OnInit {
       );
     }
   }
+
+  // when user clicks on close/cancel button this function will get called
   close() {
     this.activeModal.close();
   }

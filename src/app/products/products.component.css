@@ -68,7 +68,7 @@ button:hover {
   text-align: center;
 }
 .loaderAlign {
-  width: 90%;
+  /* width: 90%; */
   margin: 0;
   margin-left: 48%;
   margin-top: 11%;

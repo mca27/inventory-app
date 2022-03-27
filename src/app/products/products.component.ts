@@ -40,6 +40,7 @@ export class ProductsComponent implements OnInit {
 
   // Call the Products API once the Compoment gets initialized
   ngOnInit(): void {
+    this.productsData = [];
     this.getProductsData();
   }
 
@@ -62,13 +63,13 @@ export class ProductsComponent implements OnInit {
       },
       (error) => {
         this.load = false;
-        this.errorMessage = error.message;
+        this.errorMessage = _.get(error, 'error.message', '');
         console.log('Error in getting products data');
       }
     );
   }
 
-  // Reset all the filters which are applied currently
+  // Reset the filters which are applied currently
   resetFilters() {
     this.categoryFilter.reset();
     this.category = "";
@@ -76,11 +77,14 @@ export class ProductsComponent implements OnInit {
 
   }
 
+  // Since we are auto-generating product id, we are showing only 8 characters of generated Id
   productIdDisplay(productId: string) {
     if (productId.length > 8)
       return productId.substr(productId.length - 8).toUpperCase();
     else return productId.toUpperCase();
   }
+
+  // Get single product by product Id
   getProduct(productId: string) {
     const url =
       this.routeConstants.COMPLETE_URL +
@@ -92,11 +96,13 @@ export class ProductsComponent implements OnInit {
         this.openDialog(this.productData, true);
       },
       (error) => {
-        this.errorMessage = error.message;
+        this.errorMessage = _.get(error, 'error.message', '');
         console.log('Error in getting products data');
       }
     );
   }
+
+  // Delete Product by product Id
   deleteProduct(productId: string) {
     const url =
       this.routeConstants.COMPLETE_URL +
@@ -114,12 +120,15 @@ export class ProductsComponent implements OnInit {
       }
     );
   }
+
+  // paginate when user clicks on paginated buttons
   paginate(pageNo: any) {
     console.log('pageNo', pageNo);
     this.page = pageNo;
     this.getProductsData();
   }
-
+  
+  // open add/update product dialog
   openDialog(data: any, isUpdate: boolean): void {
     console.log('data', data);
 
@@ -138,6 +147,7 @@ export class ProductsComponent implements OnInit {
     );
   }
 
+  // Filter based on category search filter
   filterByCategory() {
     const category = _.get(this.categoryFilter, 'value', '');
     console.log('this.category', category);
@@ -146,6 +156,8 @@ export class ProductsComponent implements OnInit {
       this.getProductsData();
     }
   }
+
+  // when user selects perpage value get the product data based on perPage
   setPerPage() {
     this.pageSize = _.get(this.perPage, 'value', '');
     this.getProductsData();

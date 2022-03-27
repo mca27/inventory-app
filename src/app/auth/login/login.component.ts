@@ -38,10 +38,13 @@ export class LoginComponent implements OnInit {
     console.log('user', this.user);
     const { email, password } = this.user;
     if (email === 'pradeep1yenkuwale@gmail.com' && password == 'pradeep143') {
+      // const token = this.authService.generateJWTToken(email);
+      // console.log("token", token);
       this.showError = false;
       this.errorMessage = '';
       this.authService.setLocalStorage()
       this.router.navigate(['products']);
+      
 
     } else {
       this.showError = true;
