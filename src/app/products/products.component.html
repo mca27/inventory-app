@@ -1,5 +1,4 @@
 <div class="container-fluid">
-
   <div class="row">
     <div class="col-md-3 col-xs-3">
       <select
@@ -42,6 +41,7 @@
         X
       </button>
     </div>
+
     <div class="col-md-3">
       <button
         class="addProduct pull-right"
@@ -99,7 +99,7 @@
       <h2>{{ errorMessage }}</h2>
     </div>
   </div>
-  <div class="row" *ngIf="productsData.length>0">
+  <div class="row" *ngIf="productsData.length > 0">
     <div class="col-md-12">
       <nav aria-label="Page navigation">
         <ul class="pagination pull-right">

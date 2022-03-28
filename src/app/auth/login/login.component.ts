@@ -37,14 +37,32 @@ export class LoginComponent implements OnInit {
   login() {
     console.log('user', this.user);
     const { email, password } = this.user;
-    if (email === 'pradeep1yenkuwale@gmail.com' && password == 'pradeep143') {
-      // const token = this.authService.generateJWTToken(email);
+    if (email === 'pradeep1yenkuwale@gmail.com' && password == 'Pradeep!43') {
+      // const token = this.authService.signToken(this.user, this.authService.authConfig.AUTHENTICATION_SALT);
       // console.log("token", token);
       this.showError = false;
       this.errorMessage = '';
-      this.authService.setLocalStorage()
-      this.router.navigate(['products']);
-      
+      const url = this.routeConstants.COMPLETE_URL + this.routeConstants.GENRATE_TOKEN
+      this.requestService.create(url, this.user).subscribe(
+        (response) => {
+          this.showError = false;
+          const userData = _.get(response, 'data', {});
+          const token = _.get(response,"data.token", "");
+          if(token){
+            this.authService.setLocalStorage(token);
+            this.router.navigate(['products']);
+
+          }else{
+            this.errorMessage = "Authentication Failed!!!";
+            this.showError = true;
+          }
+        },
+        (error) => {
+          this.errorMessage = _.get(error, 'error.message', '');
+          this.showError = true;
+          console.log('Error in getting products data');
+        }
+      );
 
     } else {
       this.showError = true;

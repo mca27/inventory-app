@@ -7,7 +7,7 @@ import { HeaderComponent } from './header/header.component';
 
 import { RequestService } from './service/requests.service';
 import { RouteConstants } from './constants/route-counstants';
-import {  HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AboutComponent } from './about/about.component';
 import { ProductsComponent } from './products/products.component';
@@ -16,6 +16,7 @@ import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DialogComponent } from './dialog/dialog.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthService } from './service/auth.service';
+import { AuthInterceptorService } from './service/authInterceptor.service';
 
 @NgModule({
   declarations: [
@@ -35,9 +36,17 @@ import { AuthService } from './service/auth.service';
     NgbModule,
     FormsModule,
   ],
-  providers: [RequestService, RouteConstants, NgbActiveModal, AuthService],
+  providers: [
+    RequestService,
+    RouteConstants,
+    NgbActiveModal,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
-
-

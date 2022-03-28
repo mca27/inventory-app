@@ -11,4 +11,5 @@ export class RouteConstants {
   ADD_PRODUCT = '/add/product/';
   UPDATE_PRODUCT = '/update/product/';
   DELETE_PRODUCT = '/delete/product/'
+  GENRATE_TOKEN =  "/user/login"
 }
