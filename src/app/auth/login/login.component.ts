@@ -32,14 +32,16 @@ export class LoginComponent implements OnInit {
   // Call the Products API once the Compoment gets initialized
   ngOnInit(): void {
     this.user = {};
+    // clear local storage if any, we are handling logout functionality here
     this.authService.clearLocalStorage();
   }
+  // user login 
   login() {
     console.log('user', this.user);
     const { email, password } = this.user;
-    if (email === 'pradeep1yenkuwale@gmail.com' && password == 'Pradeep!43') {
-      // const token = this.authService.signToken(this.user, this.authService.authConfig.AUTHENTICATION_SALT);
-      // console.log("token", token);
+    // As of now we are hardcoding the user in the front-end, 
+    // And this user will get created automatically in the backend on first login
+    if (email === 'pradeep1yenkuwale@gmail.com' && password == 'admin123') {
       this.showError = false;
       this.errorMessage = '';
       const url = this.routeConstants.COMPLETE_URL + this.routeConstants.GENRATE_TOKEN
@@ -49,6 +51,7 @@ export class LoginComponent implements OnInit {
           const userData = _.get(response, 'data', {});
           const token = _.get(response,"data.token", "");
           if(token){
+            // setup local storage
             this.authService.setLocalStorage(token);
             this.router.navigate(['products']);
 

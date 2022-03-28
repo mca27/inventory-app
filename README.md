@@ -60,3 +60,8 @@ Step 5: Once installation is done run the command: npm run start
 - Just run command ==> git clone https://github.com/mca27/inventory-app.git  
 - Run ==> get fetch origin ==> This will list all the branches  
 - The latest branch in this is ==> development
+
+# User login
+- As of now have hardcoded the user login
+- Email: pradeep1yenkuwale@gmail.com
+- Password: admin123
