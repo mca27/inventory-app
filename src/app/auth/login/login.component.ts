@@ -37,10 +37,9 @@ export class LoginComponent implements OnInit {
   }
   // user login 
   login() {
-    console.log('user', this.user);
     const { email, password } = this.user;
     // As of now we are hardcoding the user in the front-end, 
-    // And this user will get created automatically in the backend on first login
+    // and this user will get created automatically in the backend on first login
     if (email === 'pradeep1yenkuwale@gmail.com' && password == 'admin123') {
       this.showError = false;
       this.errorMessage = '';
@@ -63,7 +62,10 @@ export class LoginComponent implements OnInit {
         (error) => {
           this.errorMessage = _.get(error, 'error.message', '');
           this.showError = true;
-          console.log('Error in getting products data');
+          if(!this.errorMessage){
+            this.errorMessage ="Something went wrong!!"
+          }
+          console.log("Error!!");
         }
       );
 

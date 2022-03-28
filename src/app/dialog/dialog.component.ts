@@ -76,7 +76,6 @@ export class DialogComponent implements OnInit {
         (error) => {
           this.errorMessage = _.get(error, 'error.message', '');
           this.showError = true;
-          console.log('Error in getting products data');
         }
       );
     } else {
@@ -101,7 +100,6 @@ export class DialogComponent implements OnInit {
         (error) => {
           this.errorMessage = _.get(error, 'error.message', '');
           this.showError = true;
-          console.log('Error in getting products data');
         }
       );
     }

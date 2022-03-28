@@ -37,13 +37,14 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 ## Steps to install and run the application
-Step 1: Download and install nodeJs and set the path in envirnement => https://nodejs.org/en/download/
+Step 1: Download and install nodeJs (v.14) and set the path in envirnement => https://nodejs.org/en/download/
 
 Step 2: Install Anglar Cli by running the command => npm install -g @angular/cli 
 
 Step 3: Now extract the Zip file provided in the working directory => example: inventoryApp
 
 Step 4: Now open the project in VSCode and run the command ==> npm install
+    - Dowonload and install VsCode from => https://code.visualstudio.com/download
     - Note you sould be in the main project folder ==> inventoryApp
     - npm insall will isnstall all relavent and needful packages which are being used by the application.
 

@@ -54,7 +54,6 @@ export class ProductsComponent implements OnInit {
     this.requestService.getAll(url).subscribe(
       (response) => {
         this.productsData = _.get(response, 'data.docs', []);
-        console.log('productsData', response);
         this.load = false;
         this.totalDocs = _.get(response, 'data.totalDocs', 0);
         this.pageSize = _.get(response, 'data.limit', 0);
@@ -64,7 +63,6 @@ export class ProductsComponent implements OnInit {
       (error) => {
         this.load = false;
         this.errorMessage = _.get(error, 'error.message', '');
-        console.log('Error in getting products data');
       }
     );
   }
@@ -97,7 +95,6 @@ export class ProductsComponent implements OnInit {
       },
       (error) => {
         this.errorMessage = _.get(error, 'error.message', '');
-        console.log('Error in getting products data');
       }
     );
   }
@@ -111,27 +108,22 @@ export class ProductsComponent implements OnInit {
     this.requestService.delete(url).subscribe(
       (response) => {
         this.productData = _.get(response, 'data', {});
-        console.log('productData', this.productData);
         this.getProductsData();
       },
       (error) => {
         this.errorMessage = error.message;
-        console.log('Error in getting products data');
       }
     );
   }
 
   // paginate when user clicks on paginated buttons
   paginate(pageNo: any) {
-    console.log('pageNo', pageNo);
     this.page = pageNo;
     this.getProductsData();
   }
   
   // open add/update product dialog
   openDialog(data: any, isUpdate: boolean): void {
-    console.log('data', data);
-
     const dialogRef = this.modalService.open(DialogComponent, {
       size: 'lg',
     });
@@ -150,7 +142,6 @@ export class ProductsComponent implements OnInit {
   // Filter based on category search filter
   filterByCategory() {
     const category = _.get(this.categoryFilter, 'value', '');
-    console.log('this.category', category);
     if (category.length >= 3) {
       this.category = category;
       this.getProductsData();
